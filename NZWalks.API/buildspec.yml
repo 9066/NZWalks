@@ -18,12 +18,12 @@ phases:
       - docker info
       - docker build -t $REPOSITORY_URI:nzwalkslatest NZWalks/NZWalks.API
 
-      - docker tag $REPOSITORY_URI:rilatest $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag $REPOSITORY_URI:nzwalkslatest $REPOSITORY_URI:$IMAGE_TAG
   post_build: 
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:rilatest
+      - docker push $REPOSITORY_URI:nzwalkslatest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file... 
       - printf '[{"name":"dev2-mica-reinsurance","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > productionimagedefinition.json
